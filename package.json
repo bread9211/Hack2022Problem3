@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "finnhub": "^1.2.16"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
   }
 }
