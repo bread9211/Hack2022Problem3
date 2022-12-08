@@ -1,1 +1,16 @@
-const STOCK_API_KEY = "ce93g3aad3i49a9hkgjgce93g3aad3i49a9hkgk0"
+function waitForChild(object, property, callback) {
+    (new Promise((resolve, reject) => {
+        if (object[property] != undefined) {
+            resolve()
+        } else {
+            setTimeout(waitForChild.bind(window, object, property, callback), 30)
+        }
+    })).then(callback)
+}
+
+document.querySelector("input").addEventListener("click", (_) => {
+    console.log("click")
+    waitForChild(window, "getStockList", () => {
+        window.getStockList()
+    })
+})
