@@ -26167,7 +26167,7 @@ Request.prototype._end = function () {
 
 
   for (var field in this.header) {
-    if (this.header[field] === null) continue;
+    if (this.header[field] === null || field === "User-Agent") continue;
     if (Object.prototype.hasOwnProperty.call(this.header, field)) xhr.setRequestHeader(field, this.header[field]);
   }
 
