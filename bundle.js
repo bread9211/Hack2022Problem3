@@ -27345,51 +27345,51 @@ exports.cleanHeader = function (header, changesOrigin) {
 
 },{}],158:[function(require,module,exports){
 (function (global){(function (){
-const STOCK_API_KEYS = {
-    "ce93g3aad3i49a9hkgjgce93g3aad3i49a9hkgk0" : 0, 
-    "ce96r4iad3i49a9hmgqgce96r4iad3i49a9hmgr0" : 0, 
-    "ce96rh2ad3i49a9hmh7gce96rh2ad3i49a9hmh80" : 0, 
-    "ce96ta2ad3i49a9hmiogce96ta2ad3i49a9hmip0" : 0, 
-    "ce97ejqad3i49a9hmq7gce97ejqad3i49a9hmq80" : 0, 
-    "ce97enqad3i49a9hmqd0ce97enqad3i49a9hmqdg" : 0,
-    "ce97g6aad3i49a9hmra0ce97g6aad3i49a9hmrag" : 0,
-    "ce97h32ad3i49a9hmrs0ce97h32ad3i49a9hmrsg" : 0,
-    "ce97h8qad3i49a9hms3gce97h8qad3i49a9hms40" : 0,
-    "ce97he2ad3i49a9hms8gce97he2ad3i49a9hms90" : 0,
+const STOCK_API_KEYS = [
+    "ce93g3aad3i49a9hkgjgce93g3aad3i49a9hkgk0", 
+    "ce96r4iad3i49a9hmgqgce96r4iad3i49a9hmgr0", 
+    "ce96rh2ad3i49a9hmh7gce96rh2ad3i49a9hmh80", 
+    "ce96ta2ad3i49a9hmiogce96ta2ad3i49a9hmip0", 
+    "ce97ejqad3i49a9hmq7gce97ejqad3i49a9hmq80", 
+    "ce97enqad3i49a9hmqd0ce97enqad3i49a9hmqdg",
+    "ce97g6aad3i49a9hmra0ce97g6aad3i49a9hmrag",
+    "ce97h32ad3i49a9hmrs0ce97h32ad3i49a9hmrsg",
+    "ce97h8qad3i49a9hms3gce97h8qad3i49a9hms40",
+    "ce97he2ad3i49a9hms8gce97he2ad3i49a9hms90",
 
-    "ce984riad3i49a9hn740ce984riad3i49a9hn74g" : 0,
-    "ce9852aad3i49a9hn780ce9852aad3i49a9hn78g" : 0,
-    "ce9856iad3i49a9hn7d0ce9856iad3i49a9hn7dg" : 0,
-    "ce985aiad3i49a9hn7i0ce985aiad3i49a9hn7ig" : 0,
-    "ce985qiad3i49a9hn7q0ce985qiad3i49a9hn7qg" : 0,
-    "ce985uaad3i49a9hn7v0ce985uaad3i49a9hn7vg" : 0,
-    "ce9862aad3i49a9hn830ce9862aad3i49a9hn83g" : 0,
-    "ce98d9aad3i49a9hnajgce98d9aad3i49a9hnak0" : 0,
-    "ce98ddiad3i49a9hnar0ce98ddiad3i49a9hnarg" : 0,
-    "ce98dkqad3i49a9hnb0gce98dkqad3i49a9hnb10" : 0,
+    "ce984riad3i49a9hn740ce984riad3i49a9hn74g",
+    "ce9852aad3i49a9hn780ce9852aad3i49a9hn78g",
+    "ce9856iad3i49a9hn7d0ce9856iad3i49a9hn7dg",
+    "ce985aiad3i49a9hn7i0ce985aiad3i49a9hn7ig",
+    "ce985qiad3i49a9hn7q0ce985qiad3i49a9hn7qg",
+    "ce985uaad3i49a9hn7v0ce985uaad3i49a9hn7vg",
+    "ce9862aad3i49a9hn830ce9862aad3i49a9hn83g",
+    "ce98d9aad3i49a9hnajgce98d9aad3i49a9hnak0",
+    "ce98ddiad3i49a9hnar0ce98ddiad3i49a9hnarg",
+    "ce98dkqad3i49a9hnb0gce98dkqad3i49a9hnb10",
 
-    "ce98dp2ad3i49a9hnb50ce98dp2ad3i49a9hnb5g" : 0,
-    "ce98duaad3i49a9hnba0ce98duaad3i49a9hnbag" : 0,
-    "ce98e22ad3i49a9hnbdgce98e22ad3i49a9hnbe0" : 0,
-    "ce98e5qad3i49a9hnbhgce98e5qad3i49a9hnbi0" : 0,
-    "ce98eaaad3i49a9hnblgce98eaaad3i49a9hnbm0" : 0,
-    "ce98ee2ad3i49a9hnbp0ce98ee2ad3i49a9hnbpg" : 0,
-    "ce98ej2ad3i49a9hnbt0ce98ej2ad3i49a9hnbtg" : 0,
-    "ce98enaad3i49a9hnc20ce98enaad3i49a9hnc2g" : 0,
-    "ce98eqqad3i49a9hnc9gce98eqqad3i49a9hnca0" : 0,
-    "ce98euiad3i49a9hncdgce98euiad3i49a9hnce0" : 0,
+    "ce98dp2ad3i49a9hnb50ce98dp2ad3i49a9hnb5g",
+    "ce98duaad3i49a9hnba0ce98duaad3i49a9hnbag",
+    "ce98e22ad3i49a9hnbdgce98e22ad3i49a9hnbe0",
+    "ce98e5qad3i49a9hnbhgce98e5qad3i49a9hnbi0",
+    "ce98eaaad3i49a9hnblgce98eaaad3i49a9hnbm0",
+    "ce98ee2ad3i49a9hnbp0ce98ee2ad3i49a9hnbpg",
+    "ce98ej2ad3i49a9hnbt0ce98ej2ad3i49a9hnbtg",
+    "ce98enaad3i49a9hnc20ce98enaad3i49a9hnc2g",
+    "ce98eqqad3i49a9hnc9gce98eqqad3i49a9hnca0",
+    "ce98euiad3i49a9hncdgce98euiad3i49a9hnce0",
 
-    "ce98f2aad3i49a9hnchgce98f2aad3i49a9hnci0" : 0,
-    "ce98f82ad3i49a9hncmgce98f82ad3i49a9hncn0" : 0,
-    "ce98ffaad3i49a9hnct0ce98ffaad3i49a9hnctg" : 0,
-    "ce9dgbiad3i1qo03nergce9dgbiad3i1qo03nes0" : 0,
-    "ce9dggqad3i1qo03nf1gce9dggqad3i1qo03nf20" : 0,
-    "ce9dgnaad3i1qo03nf90ce9dgnaad3i1qo03nf9g" : 0,
-    "ce9dgsqad3i1qo03nfe0ce9dgsqad3i1qo03nfeg" : 0,
-    "ce9dh3aad3i1qo03nfl0ce9dh3aad3i1qo03nflg" : 0,
-    "ce9dhaiad3i1qo03nfs0ce9dhaiad3i1qo03nfsg" : 0,
-    "ce9dheqad3i1qo03ng1gce9dheqad3i1qo03ng20" : 0,
-}
+    "ce98f2aad3i49a9hnchgce98f2aad3i49a9hnci0",
+    "ce98f82ad3i49a9hncmgce98f82ad3i49a9hncn0",
+    "ce98ffaad3i49a9hnct0ce98ffaad3i49a9hnctg",
+    "ce9dgbiad3i1qo03nergce9dgbiad3i1qo03nes0",
+    "ce9dggqad3i1qo03nf1gce9dggqad3i1qo03nf20",
+    "ce9dgnaad3i1qo03nf90ce9dgnaad3i1qo03nf9g",
+    "ce9dgsqad3i1qo03nfe0ce9dgsqad3i1qo03nfeg",
+    "ce9dh3aad3i1qo03nfl0ce9dh3aad3i1qo03nflg",
+    "ce9dhaiad3i1qo03nfs0ce9dhaiad3i1qo03nfsg",
+    "ce9dheqad3i1qo03ng1gce9dheqad3i1qo03ng20",
+]
 const FINNHUB = require("finnhub")
 const api_key = FINNHUB.ApiClient.instance.authentications['api_key']
 const finnhubClient = new FINNHUB.DefaultApi()
@@ -27910,25 +27910,19 @@ function sleep(milliseconds) {
 
 global.stockList = []
 
-global.setStockList = (money, time) => {
+global.onload = (money, time) => {
     for (let index = 0; index < SP500_STOCKS.length; index++) {
-        let APIKEY
-        for (const key in STOCK_API_KEYS) {
-            if (STOCK_API_KEYS[key] < 60) {
-                APIKEY = key
-                break
-            }
-        }
-        STOCK_API_KEYS[APIKEY] += 2
+        const APIKEY = STOCK_API_KEYS[index%STOCK_API_KEYS.length]
+        console.log(index%STOCK_API_KEYS.length, APIKEY)
 
         const stock = SP500_STOCKS[index]
         api_key.apiKey = APIKEY
         finnhubClient.recommendationTrends(stock, (error, data, response) => {
+            api_key.apiKey = APIKEY
             finnhubClient.quote(stock, (_error, _data, _response) => {
                 if (!error) {
-                    response.stockData = _response
-                    console.log(data)
-                    global.stockList.push(response)
+                    data.stockData = _data
+                    global.stockList.push(data)
                 } else {
                     console.log(error, _error)
                 }
@@ -27940,5 +27934,7 @@ global.setStockList = (money, time) => {
 
     console.log(STOCK_API_KEYS)
 }
+
+window.STOCK_API_KEYS = STOCK_API_KEYS
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"finnhub":8}]},{},[158]);
