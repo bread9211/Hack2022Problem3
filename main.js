@@ -10,9 +10,14 @@ function waitForChild(object, property, callback) {
 
 document.querySelector("input").addEventListener("click", (_) => {
     console.log("click")
-    waitForChild(window, "setStockList", () => {
-        window.setStockList()
 
+    if (window.stockList.length == 0) {
+        waitForChild(window, "setStockList", () => {
+            window.setStockList()
+        })
+    }
+
+    window.stockList.forEach(stock => {
         
     })
 })
