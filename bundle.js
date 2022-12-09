@@ -27345,19 +27345,73 @@ exports.cleanHeader = function (header, changesOrigin) {
 
 },{}],158:[function(require,module,exports){
 (function (global){(function (){
-const STOCK_API_KEY = "ce93g3aad3i49a9hkgjgce93g3aad3i49a9hkgk0"
+const STOCK_API_KEYS = [
+    "ce93g3aad3i49a9hkgjgce93g3aad3i49a9hkgk0", 
+    "ce96r4iad3i49a9hmgqgce96r4iad3i49a9hmgr0", 
+    "ce96rh2ad3i49a9hmh7gce96rh2ad3i49a9hmh80", 
+    "ce96ta2ad3i49a9hmiogce96ta2ad3i49a9hmip0", 
+    "ce97ejqad3i49a9hmq7gce97ejqad3i49a9hmq80", 
+    "ce97enqad3i49a9hmqd0ce97enqad3i49a9hmqdg",
+    "ce97g6aad3i49a9hmra0ce97g6aad3i49a9hmrag",
+    "ce97h32ad3i49a9hmrs0ce97h32ad3i49a9hmrsg",
+    "ce97h8qad3i49a9hms3gce97h8qad3i49a9hms40",
+    "ce97he2ad3i49a9hms8gce97he2ad3i49a9hms90",
+
+    "ce984riad3i49a9hn740ce984riad3i49a9hn74g",
+    "ce9852aad3i49a9hn780ce9852aad3i49a9hn78g",
+    "ce9856iad3i49a9hn7d0ce9856iad3i49a9hn7dg",
+    "ce985aiad3i49a9hn7i0ce985aiad3i49a9hn7ig",
+    "ce985qiad3i49a9hn7q0ce985qiad3i49a9hn7qg",
+    "ce985uaad3i49a9hn7v0ce985uaad3i49a9hn7vg",
+    "ce9862aad3i49a9hn830ce9862aad3i49a9hn83g",
+    // "",
+    // "",
+    // "",
+
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+]
 const FINNHUB = require("finnhub")
 const api_key = FINNHUB.ApiClient.instance.authentications['api_key']
-api_key.apiKey = STOCK_API_KEY
 const finnhubClient = new FINNHUB.DefaultApi()
 
-global.getStockList = (money, time) => {
-    finnhubClient.stockSymbols(
-        "US",
-        {mic : "XNYS"},
-        (error, data, response) => {
-        console.log(response)
-    })
+const SP500_STOCKS = ["AAPLMSFT", "GOOG", "GOOGL", "AMZN", "BRK.B", "TSLA", "UNH", "JNJ", "XOM", "WMT", "NVDA", "V", "JPM", "PG", "LLY", "CVX", "MA", "HD", "META", "ABBV", "PFE", "MRK", "KO", "BAC", "PEP", "TMO", "COST", "AVGO", "ORCL", "CSCO", "MCD", "DHR", "ACN", "TMUS", "ABT", "BMY", "NEE", "NKE", "DIS", "WFC", "LIN", "TXN", "PM", "VZ", "ADBE", "UPS", "AMGN", "CMCSA", "MS", "SCHW", "RTX", "COP", "HON", "T", "NFLX", "QCOM", "IBM", "CRM", "CVS", "DE", "UNP", "LMT", "ELV", "LOW", "GS", "CAT", "INTC", "SBUX", "SPGI", "AXP", "AMD", "GILD", "INTU", "ADP", "BLK", "BA", "PLD", "MDT", "CI", "AMT", "ISRG", "GE", "MDLZ", "TJX", "CB", "AMAT", "SYK", "C", "MMC", "ADI", "EL", "MO", "PYPL", "NOC", "REGN", "VRTX", "BKNG", "NOW", "DUK", "PGR", "EOG", "SO", "SLB", "TGT", "ZTS", "BDX", "APD", "HUM", "MMM", "GD", "ITW", "WM", "HCA", "MRNA", "SHW", "CSX", "CME", "BSX", "CL", "USB", "FISV", "AON", "EQIX", "ETN", "PNC", "LRCX", "ATVI", "CCI", "MET", "ICE", "MU", "OXY", "CHTR", "NSC", "EMR", "TFC", "FCX", "DG", "PXD", "KLAC", "GM", "MCO", "MCK", "KDP", "MNST", "F", "SRE", "ORLY", "MPC", "MAR", "PSA", "GIS", "SNPS", "ADM", "AEP", "PSX", "CNC", "D", "KHC", "HSY", "AZO", "APH", "ROP", "CTAS", "KMB", "AIG", "VLO", "CTVA", "JCI", "DXCM", "FDX", "CDNS", "A", "EW", "MSI", "AFL", "TRV", "PAYX", "RSG", "SYY", "EXC", "ECL", "NXPI", "ENPH", "ADSK", "BIIB", "DVN", "CMG", "HES", "LHX", "FIS", "MCHP", "AJG", "WMB", "KMI", "ROST", "MSCI", "STZ", "TT", "FTNT", "ANET", "O", "NUE", "IQV", "SPG", "PRU", "TEL", "XEL", "NEM", "PH", "HLT", "YUM", "PCAR", "CARR", "DOW", "COF", "LVS", "BF.B", "EA", "WBA", "ABC", "DD", "CMI", "BK", "ED", "ALL", "IDXX", "AMP", "KR", "TDG", "OTIS", "CSGP", "NDAQ", "HAL", "DLTR", "MTD", "ILMN", "VICI", "WELL", "AME", "RMD", "ODFL", "KEYS", "SBAC", "DLR", "PPG", "PCG", "CTSH", "PEG", "ALB", "ON", "WEC", "CEG", "ROK", "ES", "GWW", "DHI", "FAST", "HPQ", "VRSK", "OKE", "BKR", "DFS", "GLW", "AWK", "MTB", "IT", "STT", "TROW", "APTV", "LYB", "IFF", "WTW", "GPN", "BAX", "GPC", "WBD", "HRL", "ZBH", "EIX", "CDW", "RJF", "K", "LEN", "FANG", "CBRE", "URI", "ARE", "TSCO", "HIG", "ETR", "FE", "EFX", "ULTA", "VMC", "LUV", "FTV", "EBAY", "AVB", "EQR", "TSN", "DAL", "WY", "MKC", "AEE", "DTE", "ACGL", "FITB", "PFG", "MLM", "PPL", "PWR", "IR", "FRC", "ANSS", "HBAN", "HPE", "VRSN", "EXR", "CAH", "LH", "CTRA", "RF", "WAT", "WRB", "XYL", "CF", "DOV", "CHD", "MOH", "EPAM", "CNP", "TDY", "CFG", "INVH", "ROL", "AES", "PAYC", "BBY", "NTRS", "JBHT", "INCY", "STE", "WAB", "HOLX", "MAA", "CLX", "GRMN", "AMCR", "CAG", "VTR", "CMS", "IEX", "EXPD", "J", "DRI", "MRO", "WST", "PKI", "FDS", "BALL", "MPWR", "ABMD", "TTWO", "ETSY", "DGX", "BR", "CINF", "SEDG", "ATO", "BRO", "FOX", "FOXA", "LYV", "SJM", "MOS", "FMC", "KEY", "IRM", "CPB", "TRGP", "HWM", "SYF", "OMC", "AVY", "COO", "TXT", "CPRT", "GEN", "UAL", "LDOS", "SWKS", "RCL", "NVR", "EXPE", "ALGN", "TRMB", "LKQ", "MGM", "PTC", "AKAM", "APA", "TER", "LNT", "PEAK", "FLT", "ESS", "KIM", "CBOE", "NTAP", "L", "EQT", "EVRG", "JKHY", "NDSN", "BEN", "VTRS", "RE", "ZBRA", "TYL", "DPZ", "IP", "UDR", "IPG", "SNA", "PKG", "HST", "POOL", "LW", "CPT", "MTCH", "BIO", "PARA", "SIVB", "GL", "SWK", "VFC", "CE", "NI", "CHRW", "REG", "TFX", "HSIC", "MAS", "STX", "WDC", "CRL", "MKTX", "NWS", "NWSA", "CZR", "JNPR", "KMX", "CCL", "BXP", "EMN", "PHM", "BBWI", "QRVO", "WYNN", "BWA", "ALLE", "CDAY", "HII", "UHS", "AAL", "WRK", "AOS", "FFIV", "TPR", "PNW", "AAP", "CTLT", "FRT", "CMA", "IVZ", "HAS", "RHI", "NRG", "FBHS", "WHR", "DISH", "SEE", "RL", "PNR", "SBNY", "ZION", "AIZ", "NCLH", "DVA", "OGN", "XRAY", "DXC", "LNC", "MHK", "GNRC", "ALK", "LUMN", "NWL", "VNO", "TECH", "TAP"]
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+global.stockList = []
+
+global.setStockList = (money, time) => {
+    for (let index = 0; index < SP500_STOCKS.length; index++) {
+        const stock = SP500_STOCKS[index]
+        api_key.apiKey = STOCK_API_KEYS[Math.floor((index/SP500_STOCKS.length)*17)]
+        finnhubClient.recommendationTrends(stock, (error, data, response) => {
+            finnhubClient.quote(stock, (_error, _data, _response) => {
+                if (!error) {
+                    response.stockData = _response.body
+                    global.stockList.push(response)
+                } else {
+                    console.log(error, _error)
+                }
+            })
+        })
+
+        sleep(10)
+    }
 }
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"finnhub":8}]},{},[158]);

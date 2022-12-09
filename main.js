@@ -10,7 +10,9 @@ function waitForChild(object, property, callback) {
 
 document.querySelector("input").addEventListener("click", (_) => {
     console.log("click")
-    waitForChild(window, "getStockList", () => {
-        window.getStockList()
+    waitForChild(window, "setStockList", () => {
+        window.setStockList()
+
+        
     })
 })
