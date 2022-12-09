@@ -35,13 +35,13 @@ const STOCK_API_KEYS = {
     "ce98f2aad3i49a9hnchgce98f2aad3i49a9hnci0" : 0,
     "ce98f82ad3i49a9hncmgce98f82ad3i49a9hncn0" : 0,
     "ce98ffaad3i49a9hnct0ce98ffaad3i49a9hnctg" : 0,
-    // "" : 0,
-    // "" : 0,
-    // "" : 0,
-    // "" : 0,
-    // "" : 0,
-    // "" : 0,
-    // "" : 0,
+    "ce9dgbiad3i1qo03nergce9dgbiad3i1qo03nes0" : 0,
+    "ce9dggqad3i1qo03nf1gce9dggqad3i1qo03nf20" : 0,
+    "ce9dgnaad3i1qo03nf90ce9dgnaad3i1qo03nf9g" : 0,
+    "ce9dgsqad3i1qo03nfe0ce9dgsqad3i1qo03nfeg" : 0,
+    "ce9dh3aad3i1qo03nfl0ce9dh3aad3i1qo03nflg" : 0,
+    "ce9dhaiad3i1qo03nfs0ce9dhaiad3i1qo03nfsg" : 0,
+    "ce9dheqad3i1qo03ng1gce9dheqad3i1qo03ng20" : 0,
 }
 const FINNHUB = require("finnhub")
 const api_key = FINNHUB.ApiClient.instance.authentications['api_key']
@@ -61,8 +61,19 @@ global.stockList = []
 
 global.setStockList = (money, time) => {
     for (let index = 0; index < SP500_STOCKS.length; index++) {
+        let APIKEY
+        for (const key in STOCK_API_KEYS) {
+            if (Object.hasOwnProperty.call(STOCK_API_KEYS, key)) {
+                APIKEY = key
+                if (STOCK_API_KEYS[key] < 8) {
+                    break
+                }
+            }
+        }
+        STOCK_API_KEYS[APIKEY]++
+
         const stock = SP500_STOCKS[index]
-        api_key.apiKey = STOCK_API_KEYS[Math.floor((index/SP500_STOCKS.length)*17)]
+        api_key.apiKey = APIKEY
         finnhubClient.recommendationTrends(stock, (error, data, response) => {
             finnhubClient.quote(stock, (_error, _data, _response) => {
                 if (!error) {
