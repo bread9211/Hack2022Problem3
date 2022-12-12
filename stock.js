@@ -580,7 +580,7 @@ global.onload = (money, time) => {
             })
         })
 
-        sleep(10)
+        sleep(50)
     }
 }
 

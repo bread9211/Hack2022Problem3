@@ -11,13 +11,30 @@ function waitForChild(object, property, callback) {
 document.querySelector("input").addEventListener("click", (_) => {
     console.log("click")
 
-    if (window.stockList.length == 0) {
-        waitForChild(window, "setStockList", () => {
-            window.setStockList()
-        })
-    }
+    window.stockList.sort((a, b) => {
+        function avg(l, type) {
+            let sum = 0
 
-    window.stockList.forEach(stock => {
+            for (let index = 0; index < l.length; index++) {
+                sum += l[index][type]
+            }
+
+            return sum/l.length
+        }
+
+        const aHoldAvg = avg(a, "hold")
+        const aSellAvg = avg(a, "sell")
+        const bHoldAvg = avg(b, "hold")
+        const bSellAvg = avg(b, "sell")
+
+        switch (key) {
+            case value:
+                
+                break;
         
+            default:
+                return -1
+                break;
+        }
     })
 })

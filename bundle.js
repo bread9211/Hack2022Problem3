@@ -26168,6 +26168,7 @@ Request.prototype._end = function () {
 
   for (var field in this.header) {
     if (this.header[field] === null || field === "User-Agent") continue;
+    console.log(field)
     if (Object.prototype.hasOwnProperty.call(this.header, field)) xhr.setRequestHeader(field, this.header[field]);
   }
 
@@ -27899,7 +27900,6 @@ const SP500_STOCKS = [
     "TECH",
     "TAP"
 ]
-console.log(SP500_STOCKS.length)
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -27913,7 +27913,6 @@ global.stockList = []
 global.onload = (money, time) => {
     for (let index = 0; index < SP500_STOCKS.length; index++) {
         const APIKEY = STOCK_API_KEYS[index%STOCK_API_KEYS.length]
-        console.log(index%STOCK_API_KEYS.length, APIKEY)
 
         const stock = SP500_STOCKS[index]
         api_key.apiKey = APIKEY
@@ -27929,10 +27928,8 @@ global.onload = (money, time) => {
             })
         })
 
-        sleep(10)
+        sleep(50)
     }
-
-    console.log(STOCK_API_KEYS)
 }
 
 window.STOCK_API_KEYS = STOCK_API_KEYS
