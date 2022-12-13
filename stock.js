@@ -571,7 +571,7 @@ global.onload = (money, time) => {
         finnhubClient.recommendationTrends(stock, (error, data, response) => {
             api_key.apiKey = APIKEY
             finnhubClient.quote(stock, (_error, _data, _response) => {
-                if (!error) {
+                if (!error || _error) {
                     data.stockData = _data
                     global.stockList.push(data)
                 } else {
