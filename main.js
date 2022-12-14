@@ -23,6 +23,4 @@ document.querySelector("#button").addEventListener("click", (_) => {
             returnList.splice(returnList.indexOf(element), 1)
         }
     }
-
-    console.log(returnList)
 })
