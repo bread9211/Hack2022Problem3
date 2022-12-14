@@ -16,15 +16,13 @@ document.querySelector("#button").addEventListener("click", (_) => {
 
     let returnList = structuredClone(window.stockList)
 
-    returnList.sort((a, b) => {
-        if (a.buyScore > b.buyScore) {
-            return 1
-        }
+    for (let index = returnList.length-1; index >= 0; index--) {
+        const element = returnList[index];
 
-        if (a.holdScore*(1+0.25*months) > b.holdScore*(1+0.25*months)) {
-            return 1
+        if (element.stockData.c > money/10) {
+            returnList.splice(returnList.indexOf(element), 1)
         }
-    })
+    }
 
     console.log(returnList)
 })

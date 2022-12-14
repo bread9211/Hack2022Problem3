@@ -27398,7 +27398,6 @@ const finnhubClient = new FINNHUB.DefaultApi()
 const SP500_STOCKS = [
     "AAPL",
     "MSFT",
-    "GOOG",
     "GOOGL",
     "AMZN",
     "BRK.B",
@@ -27929,6 +27928,22 @@ global.onload = (money, time) => {
     nextQuote()
 
     const index = SP500_STOCKS.findIndex(element => element == stock)+1
+
+    if (index === SP500_STOCKS.length) {
+      window.stockList.sort((a, b) => {
+        if (a.buyScore > b.buyScore) {
+            return -1
+        }
+
+        if (a.holdScore*(1+0.25*months) > b.holdScore*(1+0.25*months)) {
+            return -1
+        }
+
+        return 1
+      })
+
+      return
+    }
 
     finnhubClient.recommendationTrends(stock, (error, data, response) => {
       get(SP500_STOCKS[index])
