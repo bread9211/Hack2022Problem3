@@ -27927,18 +27927,37 @@ global.onload = (money, time) => {
   function get(stock) {
     next()
     nextQuote()
+
+    const index = SP500_STOCKS.findIndex(element => element == stock)+1
+
     finnhubClient.recommendationTrends(stock, (error, data, response) => {
+      get(SP500_STOCKS[index])
+
       finnhubClient.quote(stock, (_error, _data, _response) => {
-        const index = SP500_STOCKS.findIndex(element => element == stock)+1
-        if (!(index > (SP500_STOCKS.length-1))) {
+        if (!(index >= SP500_STOCKS.length)) {
           if (error || _error) {
             console.log(error, _error)
           }
           
-          data.stockData = _data
-          window.stockList = data
+          let buy = 0
+          let hold = 0
+          let sell = 0
+          for (const quote of data) {
+            buy += quote.buy + quote.strongBuy*2
+            hold += quote.hold
+            sell += quote.sell + quote.strongSell*2
+          }
+          
+          const length = (Object.keys(data)).length
 
-          get(SP500_STOCKS[index])
+          data.buy = buy/length
+          data.hold = hold/length
+          data.sell = sell/length
+
+          data.buyScore = data.buy - data.sell
+          data.holdScore = data.hold + data.buy/2
+          data.stockData = _data
+          window.stockList.push(data)
         }
       })
     })

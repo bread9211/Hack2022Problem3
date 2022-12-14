@@ -8,33 +8,23 @@ function waitForChild(object, property, callback) {
     })).then(callback)
 }
 
-document.querySelector("input").addEventListener("click", (_) => {
+document.querySelector("#button").addEventListener("click", (_) => {
     console.log("click")
 
-    window.stockList.sort((a, b) => {
-        function avg(l, type) {
-            let sum = 0
+    const money = parseFloat(document.querySelector("#money").value)
+    const months = parseInt(document.querySelector("#months").value)
 
-            for (let index = 0; index < l.length; index++) {
-                sum += l[index][type]
-            }
+    let returnList = structuredClone(window.stockList)
 
-            return sum/l.length
+    returnList.sort((a, b) => {
+        if (a.buyScore > b.buyScore) {
+            return 1
         }
 
-        const aHoldAvg = avg(a, "hold")
-        const aSellAvg = avg(a, "sell")
-        const bHoldAvg = avg(b, "hold")
-        const bSellAvg = avg(b, "sell")
-
-        switch (key) {
-            case value:
-                
-                break;
-        
-            default:
-                return -1
-                break;
+        if (a.holdScore*(1+0.25*months) > b.holdScore*(1+0.25*months)) {
+            return 1
         }
     })
+
+    console.log(returnList)
 })
