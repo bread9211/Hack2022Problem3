@@ -27935,7 +27935,7 @@ global.onload = (money, time) => {
             return -1
         }
 
-        if (a.holdScore*(1+0.25*months) > b.holdScore*(1+0.25*months)) {
+        if (a.buyScore + a.holdScore*(1+0.25*months) > b.buyScore + b.holdScore*(1+0.25*months)) {
             return -1
         }
 
