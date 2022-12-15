@@ -12,7 +12,7 @@
             calc(_) {
                 console.log("click")
 
-                const money = parseFloat(document.querySelectorAll("#money").value)
+                const money = parseFloat(document.querySelector("#money").value)
                 const months = parseInt(document.querySelector("#months").value)
                 console.log(money, months)
 
