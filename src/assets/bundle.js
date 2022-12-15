@@ -27922,12 +27922,15 @@ function nextQuote() {
   api_key.apiKey = STOCK_API_KEYS_QUOTE[current1%STOCK_API_KEYS_QUOTE.length]
 }
 
+window.percentage = 0
+
 global.onload = (money, time) => {
   function get(stock) {
     next()
     nextQuote()
 
     const index = SP500_STOCKS.findIndex(element => element == stock)+1
+    window.percentage = index/SP500_STOCKS.length * 100
 
     if (index === SP500_STOCKS.length) {
       window.stockList.sort((a, b) => {

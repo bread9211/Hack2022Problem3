@@ -10,6 +10,8 @@
     export default {
         methods: {
             calc(_) {
+                if (window.stockList.length < 500) { return }
+
                 console.log("click")
 
                 const money = parseFloat(document.querySelector("#money").value)
