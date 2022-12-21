@@ -27899,13 +27899,6 @@ const SP500_STOCKS = [
     "TECH",
     "TAP"
 ]
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
 
 global.stockList = []
 
@@ -27922,6 +27915,16 @@ function nextQuote() {
   api_key.apiKey = STOCK_API_KEYS_QUOTE[current1%STOCK_API_KEYS_QUOTE.length]
 }
 
+function waitForChild(object, property, callback) {
+  (new Promise((resolve, reject) => {
+      if (object[property] != undefined) {
+          resolve()
+      } else {
+          setTimeout(waitForChild.bind(window, object, property, callback), 30)
+      }
+  })).then(callback)
+}
+
 window.percentage = 0
 
 global.onload = (money, time) => {
@@ -27930,7 +27933,7 @@ global.onload = (money, time) => {
     nextQuote()
 
     const index = SP500_STOCKS.findIndex(element => element == stock)+1
-    window.percentage = index/SP500_STOCKS.length * 100
+    waitForChild(window, "updatePercent", () => {window.updatePercent(index/SP500_STOCKS.length * 100, stock)})
 
     if (index === SP500_STOCKS.length) {
       window.stockList.sort((a, b) => {

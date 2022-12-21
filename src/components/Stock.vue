@@ -1,8 +1,8 @@
 <template>
     <div>
-        Money (USD): <input type="text" id="money"><br>
-        Time (months) : <input type="text" id="months"><br>
-        <button @click="calc" >Calculate</button>
+        Money (USD): <input type="text" id="money" disabled><br>
+        Time (months) : <input type="text" id="months" disabled><br>
+        <button @click="calc" disabled>Calculate</button>
     </div>
 </template>
 
