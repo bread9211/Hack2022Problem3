@@ -10,7 +10,7 @@
 <script>
 export default {
     data() {
-        return {
+        return {    
             percent : 0.1,
             stock: ""
         }

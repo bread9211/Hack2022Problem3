@@ -8,6 +8,7 @@
 
 <script>
     export default {
+        emits: ['sorted'],
         methods: {
             calc(_) {
                 if (window.stockList.length < 500) { return }
@@ -27,9 +28,7 @@
                         returnList.splice(returnList.indexOf(element), 1)
                     }
                 }
-
-                console.log(returnList)
-                window.sorted = returnList
+                this.$emit("sorted", returnList)
             }
         }
     }
