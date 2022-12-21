@@ -29,6 +29,7 @@
                 }
 
                 console.log(returnList)
+                window.sorted = returnList
             }
         }
     }

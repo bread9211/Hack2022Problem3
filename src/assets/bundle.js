@@ -27978,6 +27978,8 @@ global.onload = (money, time) => {
           data.buyScore = data.buy - data.sell
           data.holdScore = data.hold + data.buy/2
           data.stockData = _data
+
+          data.stock = data[0].symbol
           window.stockList.push(data)
         }
       })
